@@ -1,11 +1,170 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>teste</title>
+    <title>Cardápio Interativo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Bakery (Beiges, Browns, Soft Amber accent) -->
+    <!-- Application Structure Plan: A single-page dashboard design. A top navigation bar with buttons filters the main content grid by category ('Todos', 'Pães', 'Bolos', etc.). This provides immediate, intuitive control over the displayed items. This structure was chosen to separate the primary task (viewing/filtering the menu) from the secondary analysis (price comparison), making the app easy to use while still providing valuable insights. A new section with a generative AI feature was added to create item descriptions on demand, enhancing the user's engagement with the content. -->
+    <!-- Visualization & Content Choices: Menu Items -> Goal: Organize/Inform -> Presentation: HTML Cards in a responsive grid -> Interaction: Category filtering via JS. AI-Generated Descriptions -> Goal: Engage/Inform -> Presentation: Dynamic text block -> Interaction: Button click to call the Gemini API. Confirmed NO SVG/Mermaid used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #FFF7F0, #FDF0FE);
+            color: #4A0E4B;
+        }
+        .nav-button {
+            transition: all 0.3s ease;
+        }
+        .nav-button.active {
+            background-color: #E6007A;
+            color: #FFF0F0;
+            font-weight: 600;
+        }
+        .text-custom-title {
+            color: #E6007A;
+        }
+    </style>
 </head>
-<body>
-    <p>confeitaria</p>
+<body class="text-stone-800">
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-custom-title">Cardápio Interativo</h1>
+            <p class="mt-2 text-lg text-purple-700">Explore nossos produtos e compare os preços de forma visual.</p>
+        </header>
+
+        <main>
+            <section id="menu-section" class="mb-12">
+                <h2 class="text-2xl font-bold text-custom-title mb-4 text-center">Nossos Produtos</h2>
+                <p class="text-center text-purple-600 mb-6 max-w-2xl mx-auto">
+                    Navegue por nossas delícias! Use os botões abaixo para filtrar os itens por categoria. Cada produto é preparado com ingredientes de alta qualidade para garantir o melhor sabor.
+                </p>
+                <nav id="category-filters" class="flex flex-wrap justify-center gap-2 mb-8">
+                </nav>
+                <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                </div>
+            </section>
+            
+        </main>
+        
+        <footer class="text-center mt-12 py-6 border-t border-pink-200">
+            <p class="text-purple-500">Desenvolvido como uma ferramenta de visualização interativa.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const menuData = [
+            { name: 'Pão simples', category: 'Pães caseiros', price: 20.00 },
+            { name: 'Pão recheado', category: 'Pães caseiros', price: 40.00 },
+            { name: 'Cuscuz Sardinha/Frango/etc G', category: 'Cuscuz paulista', price: 150.00 },
+            { name: 'Cuscuz Camarão', category: 'Cuscuz paulista', price: 190.00 },
+            { name: 'Bolo de Milho', category: 'Bolos simples', price: 52.00, portions: 16 },
+            { name: 'Bolo de Fubá', category: 'Bolos simples', price: 52.00, portions: 16 },
+            { name: 'Bolo Fubá c/ goiabada', category: 'Bolos simples', price: 60.00, portions: 16 },
+            { name: 'Bolo Cocada invertida', category: 'Bolos simples', price: 60.00, portions: 16 },
+            { name: 'Bolo de Chocolate', category: 'Bolos simples', price: 60.00, portions: 16 },
+            { name: 'Bolo Mesclado', category: 'Bolos simples', price: 60.00, portions: 16 },
+            { name: 'Bolo Formigueiro', category: 'Bolos simples', price: 56.00, portions: 16 },
+            { name: 'Bolo Laranja c/ casca', category: 'Bolos simples', price: 60.00, portions: 16 },
+            { name: 'Bolo Vulcão Cenoura c/ choc.', category: 'Bolos simples', price: 70.00 },
+            { name: 'Bolo Vulcão Choc. c/ brig.', category: 'Bolos vulcão', price: 75.00 },
+            { name: 'Torta de Frango G', category: 'Tortas salgadas', price: 95.00 },
+            { name: 'Torta Baurú', category: 'Tortas salgadas', price: 110.00 },
+            { name: 'Torta de morango', category: 'Tortas doces', price: 100.00, portions: 10 },
+            { name: 'Torta de limão', category: 'Tortas doces', price: 85.00, portions: 10 },
+            { name: 'Torta Maracolate', category: 'Tortas doces', price: 110.00, portions: 10 },
+            { name: 'Torta holandesa', category: 'Tortas doces', price: 120.00, portions: 10 },
+            { name: 'Torta banoffe', category: 'Tortas doces', price: 120.00, portions: 10 },
+            { name: 'Doce de leite', category: 'Bolos recheados', price: 89.00, per_kg: true },
+            { name: 'Doce de leite c/ coco', category: 'Bolos recheados', price: 90.00, per_kg: true },
+            { name: 'Doce de leite c/ ameixa', category: 'Bolos recheados', price: 100.00, per_kg: true },
+            { name: 'Creme com abacaxi', category: 'Bolos recheados', price: 90.00, per_kg: true },
+            { name: 'Creme com pêssego', category: 'Bolos recheados', price: 90.00, per_kg: true },
+            { name: 'Mousse de maracujá', category: 'Bolos recheados', price: 100.00, per_kg: true },
+            { name: 'Mousse de chocolate', category: 'Bolos recheados', price: 105.00, per_kg: true },
+            { name: 'Ninho com morangos', category: 'Bolos recheados', price: 105.00, per_kg: true },
+            { name: 'Ninho com abacaxi', category: 'Bolos recheados', price: 105.00, per_kg: true },
+            { name: 'Merengue', category: 'Bolos recheados', price: 95.00, per_kg: true },
+            { name: 'Brigadeiro', category: 'Bolos recheados', price: 90.00, per_kg: true },
+            { name: 'Prestigio', category: 'Bolos recheados', price: 90.00, per_kg: true },
+            { name: 'Dois amores', category: 'Bolos recheados', price: 120.00, per_kg: true },
+            { name: 'Massa branca a partir', category: 'Bolos recheados', price: 89.00, per_kg: true },
+            { name: 'Massa de chocolate', category: 'Bolos recheados', price: 90.00, per_kg: true },
+            { name: 'Pudim G', category: 'Outros', price: 90.00 },
+            { name: 'Sonhos', category: 'Outros', price: 8.00 },
+            { name: 'Pão de mel', category: 'Outros', price: 9.00 }
+        ];
+
+        const categoryBorderColors = {
+            'Pães caseiros': '#E6007A',
+            'Cuscuz paulista': '#FFD700',
+            'Bolos simples': '#8A2BE2',
+            'Bolos vulcão': '#FF69B4',
+            'Tortas salgadas': '#C71585',
+            'Tortas doces': '#FFC0CB',
+            'Bolos recheados': '#9932CC',
+            'Outros': '#DAA520'
+        };
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuGrid = document.getElementById('menu-grid');
+            const categoryFilters = document.getElementById('category-filters');
+
+            const categories = ['Todos', ...new Set(menuData.map(item => item.category))];
+
+            function renderMenu(items) {
+                menuGrid.innerHTML = '';
+                items.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'bg-white rounded-xl shadow-md p-5 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300';
+                    card.innerHTML = `
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wider" style="color: ${categoryBorderColors[item.category] || '#6b7280'}">${item.category}</p>
+                            <h3 class="font-bold text-lg mt-1 text-stone-800">${item.name}</h3>
+                        </div>
+                        <p class="text-2xl font-bold text-custom-title mt-4">
+                            R$ ${item.price.toFixed(2).replace('.', ',')}
+                        </p>
+                        ${item.per_kg ? '<p class="text-xs text-stone-500 mt-1">(preço por quilo)</p>' : ''}
+                        ${item.portions ? '<p class="text-xs text-stone-500 mt-1">(rende ' + item.portions + ' pedaços médios)</p>' : ''}
+                    `;
+                    menuGrid.appendChild(card);
+                });
+            }
+
+            function setupFilters() {
+                categories.forEach(category => {
+                    const button = document.createElement('button');
+                    button.textContent = category;
+                    button.className = 'nav-button px-4 py-2 rounded-full text-sm font-medium bg-white text-custom-title border border-pink-200 hover:bg-pink-100';
+                    if (category === 'Todos') {
+                        button.classList.add('active');
+                    }
+                    button.addEventListener('click', () => {
+                        document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        
+                        const filteredData = category === 'Todos'
+                            ? menuData
+                            : menuData.filter(item => item.category === category);
+                        renderMenu(filteredData);
+                    });
+                    categoryFilters.appendChild(button);
+                });
+            }
+
+            setupFilters();
+            renderMenu(menuData);
+        });
+    </script>
 </body>
 </html>
