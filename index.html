@@ -3,70 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cardápio Interativo</title>
+    <title>Doce Sabor - Cardápio Confeitaria</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Warm Bakery (Beiges, Browns, Soft Amber accent) -->
-    <!-- Application Structure Plan: A single-page dashboard design. A top navigation bar with buttons filters the main content grid by category ('Todos', 'Pães', 'Bolos', etc.). This provides immediate, intuitive control over the displayed items. This structure was chosen to separate the primary task (viewing/filtering the menu) from the secondary analysis (price comparison), making the app easy to use while still providing valuable insights. A new section with a generative AI feature was added to create item descriptions on demand, enhancing the user's engagement with the content. -->
-    <!-- Visualization & Content Choices: Menu Items -> Goal: Organize/Inform -> Presentation: HTML Cards in a responsive grid -> Interaction: Category filtering via JS. AI-Generated Descriptions -> Goal: Engage/Inform -> Presentation: Dynamic text block -> Interaction: Button click to call the Gemini API. Confirmed NO SVG/Mermaid used. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #FFF7F0, #FDF0FE);
-            color: #4A0E4B;
+            background: linear-gradient(135deg, #fef7f0, #fdf2f8);
+            color: #4a044e;
         }
+        
+        .logo-font {
+            font-family: 'Dancing Script', cursive;
+        }
+        
         .nav-button {
             transition: all 0.3s ease;
         }
+        
         .nav-button.active {
-            background-color: #E6007A;
-            color: #FFF0F0;
-            font-weight: 600;
+            background-color: #c026d3;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(192, 38, 211, 0.3);
         }
-        .text-custom-title {
-            color: #E6007A;
+        
+        .product-card {
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+            border-color: #f0abfc;
+        }
+        
+        .price-tag {
+            background: linear-gradient(135deg, #c026d3, #a855f7);
+        }
+        
+        .category-badge {
+            font-size: 0.7rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+        }
+        
+        .flavor-badge {
+            font-size: 0.65rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 15px;
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            color: #0369a1;
         }
     </style>
 </head>
-<body class="text-stone-800">
-
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        
-        <header class="text-center mb-8">
-            <h1 class="text-4xl md:text-5xl font-bold text-custom-title">Cardápio Interativo</h1>
-            <p class="mt-2 text-lg text-purple-700">Explore nossos produtos e compare os preços de forma visual.</p>
+<body class="min-h-screen">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <!-- Header com espaço para Logo -->
+        <header class="text-center mb-12">
+            <!-- Espaço para Logo -->
+            <div class="flex justify-center items-center mb-6">
+                <div class="w-32 h-32 bg-white rounded-full shadow-lg flex items-center justify-center border-4 border-pink-200">
+                    <!-- Substitua esta div pela sua imagem de logo -->
+                     <img src="filipesep.github.io/cardapio/img/corujinha.png" alt="nossa logo" class="w-24 h-24">
+                    <div class="text-center">
+                        <div class="logo-font text-2xl text-purple-600 font-bold"></div>
+                        <div class="logo-font text-xl text-pink-500 font-bold"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <h1 class="logo-font text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500 mb-4">
+                Corujinha Pães & Bolos
+            </h1>
+            <p class="text-lg md:text-xl text-purple-700 max-w-2xl mx-auto">
+                Confeitaria artesanal com o sabor que encanta seu paladar
+            </p>
         </header>
 
+        <!-- Seção do Cardápio -->
         <main>
-            <section id="menu-section" class="mb-12">
-                <h2 class="text-2xl font-bold text-custom-title mb-4 text-center">Nossos Produtos</h2>
-                <p class="text-center text-purple-600 mb-6 max-w-2xl mx-auto">
-                    Navegue por nossas delícias! Use os botões abaixo para filtrar os itens por categoria. Cada produto é preparado com ingredientes de alta qualidade para garantir o melhor sabor.
-                </p>
-                <nav id="category-filters" class="flex flex-wrap justify-center gap-2 mb-8">
+            <section id="menu-section" class="mb-16">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-purple-800 mb-3">Nosso Cardápio</h2>
+                    <p class="text-purple-600 max-w-3xl mx-auto">
+                        Descubra nossas delícias feitas com ingredientes selecionados e muito carinho. 
+                        Use os filtros para explorar por categoria.
+                    </p>
+                </div>
+
+                <!-- Filtros de Categoria -->
+                <nav id="category-filters" class="flex flex-wrap justify-center gap-3 mb-10">
+                    <!-- Os botões serão gerados pelo JavaScript -->
                 </nav>
-                <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+                <!-- Grid de Produtos -->
+                <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Os cards serão gerados pelo JavaScript -->
                 </div>
             </section>
-            
         </main>
-        
-        <footer class="text-center mt-12 py-6 border-t border-pink-200">
-            <p class="text-purple-500">Desenvolvido como uma ferramenta de visualização interativa.</p>
-        </footer>
 
+        <!-- Footer -->
+        <footer class="text-center mt-16 py-8 border-t border-pink-200 bg-white rounded-lg">
+            <div class="max-w-md mx-auto">
+                <div class="logo-font text-2xl text-purple-600 font-bold mb-2">Doce Sabor</div>
+                <p class="text-purple-500 text-sm mb-4">
+                    Confeitaria Artesanal • Doces que transformam momentos
+                </p>
+                <p class="text-purple-400 text-xs">
+                    Desenvolvido com ❤️ para adoçar seu dia
+                </p>
+            </div>
+        </footer>
     </div>
 
     <script>
         const menuData = [
             { name: 'Pão simples', category: 'Pães caseiros', price: 20.00 },
-            { name: 'Pão recheado', category: 'Pães caseiros', price: 40.00 },
-            { name: 'Cuscuz Sardinha/Frango/etc G', category: 'Cuscuz paulista', price: 150.00 },
-            { name: 'Cuscuz Camarão', category: 'Cuscuz paulista', price: 190.00 },
+            { 
+                name: 'Pão recheado', 
+                category: 'Pães caseiros', 
+                price: 40.00,
+                description: 'Delicioso pão caseiro recheado',
+                flavors: ['Calabresa', 'Bauru']
+            },
             { name: 'Bolo de Milho', category: 'Bolos simples', price: 52.00, portions: 16 },
             { name: 'Bolo de Fubá', category: 'Bolos simples', price: 52.00, portions: 16 },
             { name: 'Bolo Fubá c/ goiabada', category: 'Bolos simples', price: 60.00, portions: 16 },
@@ -76,7 +142,7 @@
             { name: 'Bolo Formigueiro', category: 'Bolos simples', price: 56.00, portions: 16 },
             { name: 'Bolo Laranja c/ casca', category: 'Bolos simples', price: 60.00, portions: 16 },
             { name: 'Bolo Vulcão Cenoura c/ choc.', category: 'Bolos simples', price: 70.00 },
-            { name: 'Bolo Vulcão Choc. c/ brig.', category: 'Bolos vulcão', price: 75.00 },
+            { name: 'Bolo Cenoura Vulcão ', category: 'Bolos vulcão', price: 75.00 },
             { name: 'Torta de Frango G', category: 'Tortas salgadas', price: 95.00 },
             { name: 'Torta Baurú', category: 'Tortas salgadas', price: 110.00 },
             { name: 'Torta de morango', category: 'Tortas doces', price: 100.00, portions: 10 },
@@ -104,17 +170,16 @@
             { name: 'Pão de mel', category: 'Outros', price: 9.00 }
         ];
 
-        const categoryBorderColors = {
-            'Pães caseiros': '#E6007A',
-            'Cuscuz paulista': '#FFD700',
-            'Bolos simples': '#8A2BE2',
-            'Bolos vulcão': '#FF69B4',
-            'Tortas salgadas': '#C71585',
-            'Tortas doces': '#FFC0CB',
-            'Bolos recheados': '#9932CC',
-            'Outros': '#DAA520'
+        const categoryColors = {
+            'Pães caseiros': 'bg-amber-100 text-amber-800 border-amber-300',
+            'Bolos simples': 'bg-purple-100 text-purple-800 border-purple-300',
+            'Bolos vulcão': 'bg-pink-100 text-pink-800 border-pink-300',
+            'Tortas salgadas': 'bg-green-100 text-green-800 border-green-300',
+            'Tortas doces': 'bg-rose-100 text-rose-800 border-rose-300',
+            'Bolos recheados': 'bg-blue-100 text-blue-800 border-blue-300',
+            'Outros': 'bg-gray-100 text-gray-800 border-gray-300'
         };
-        
+
         document.addEventListener('DOMContentLoaded', () => {
             const menuGrid = document.getElementById('menu-grid');
             const categoryFilters = document.getElementById('category-filters');
@@ -125,17 +190,38 @@
                 menuGrid.innerHTML = '';
                 items.forEach(item => {
                     const card = document.createElement('div');
-                    card.className = 'bg-white rounded-xl shadow-md p-5 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300';
+                    card.className = 'product-card bg-white rounded-2xl shadow-lg p-6 flex flex-col justify-between border';
+                    
+                    let flavorsHTML = '';
+                    if (item.flavors && item.flavors.length > 0) {
+                        flavorsHTML = `
+                            <div class="mt-3">
+                                <p class="text-sm font-medium text-gray-700 mb-2">🍴 Sabores disponíveis:</p>
+                                <div class="flex flex-wrap gap-1">
+                                    ${item.flavors.map(flavor => 
+                                        `<span class="flavor-badge font-medium">${flavor}</span>`
+                                    ).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }
+
                     card.innerHTML = `
                         <div>
-                            <p class="text-xs font-semibold uppercase tracking-wider" style="color: ${categoryBorderColors[item.category] || '#6b7280'}">${item.category}</p>
-                            <h3 class="font-bold text-lg mt-1 text-stone-800">${item.name}</h3>
+                            <span class="category-badge font-semibold border ${categoryColors[item.category] || 'bg-gray-100 text-gray-800'}">
+                                ${item.category}
+                            </span>
+                            <h3 class="font-bold text-xl mt-3 text-gray-800">${item.name}</h3>
+                            ${item.description ? `<p class="text-sm text-gray-600 mt-2">${item.description}</p>` : ''}
+                            ${flavorsHTML}
                         </div>
-                        <p class="text-2xl font-bold text-custom-title mt-4">
-                            R$ ${item.price.toFixed(2).replace('.', ',')}
-                        </p>
-                        ${item.per_kg ? '<p class="text-xs text-stone-500 mt-1">(preço por quilo)</p>' : ''}
-                        ${item.portions ? '<p class="text-xs text-stone-500 mt-1">(rende ' + item.portions + ' pedaços médios)</p>' : ''}
+                        <div class="mt-4">
+                            <div class="price-tag inline-block px-4 py-2 rounded-full text-white font-bold text-lg">
+                                R$ ${item.price.toFixed(2).replace('.', ',')}
+                            </div>
+                            ${item.per_kg ? '<p class="text-sm text-gray-600 mt-2">💫 Preço por quilo</p>' : ''}
+                            ${item.portions ? `<p class="text-sm text-gray-600 mt-2">🍰 Rende ${item.portions} pedaços</p>` : ''}
+                        </div>
                     `;
                     menuGrid.appendChild(card);
                 });
@@ -145,19 +231,22 @@
                 categories.forEach(category => {
                     const button = document.createElement('button');
                     button.textContent = category;
-                    button.className = 'nav-button px-4 py-2 rounded-full text-sm font-medium bg-white text-custom-title border border-pink-200 hover:bg-pink-100';
+                    button.className = 'nav-button px-5 py-3 rounded-full font-medium bg-white text-purple-700 border border-purple-200 hover:bg-purple-50 transition-all duration-300';
+                    
                     if (category === 'Todos') {
                         button.classList.add('active');
                     }
+                    
                     button.addEventListener('click', () => {
                         document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
                         button.classList.add('active');
                         
-                        const filteredData = category === 'Todos'
-                            ? menuData
+                        const filteredData = category === 'Todos' 
+                            ? menuData 
                             : menuData.filter(item => item.category === category);
                         renderMenu(filteredData);
                     });
+                    
                     categoryFilters.appendChild(button);
                 });
             }
