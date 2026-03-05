@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corujinha Pães & Bolos - Cardápio Confeitaria</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #fef7f0, #fdf2f8);
+            color: #4a044e;
+        }
+        
+        .logo-font {
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .nav-button {
+            transition: all 0.3s ease;
+        }
+        
+        .nav-button.active {
+            background-color: #c026d3;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(192, 38, 211, 0.3);
+        }
+        
+        .product-card {
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+            border-color: #f0abfc;
+        }
+        
+        .price-tag {
+            background: linear-gradient(135deg, #c026d3, #a855f7);
+        }
+        
+        .category-badge {
+            font-size: 0.7rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+        }
+        
+        .flavor-badge {
+            font-size: 0.65rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 15px;
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            color: #0369a1;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <!-- Header com espaço para Logo -->
+        <header class="text-center mb-12">
+            <div class="flex justify-center items-center mb-6">
+                <div class="w-32 h-32 bg-white rounded-full shadow-lg flex items-center justify-center border-4 border-pink-200">
+                    <!-- Substitua esta div pela sua imagem de logo -->
+                    <div class="text-center">
+                        <img src="https://filipesep.github.io/cardapio/img/logo.png" alt="nossa logo">
+                    </div>
+                </div>
+            </div>
+            
+            <h1 class="logo-font text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500 mb-4">
+                Corujinha Pães & Bolos
+            </h1>
+            <p class="text-lg md:text-xl text-purple-700 max-w-2xl mx-auto">
+                Confeitaria artesanal com o sabor que encanta seu paladar
+            </p>
+        </header>
+
+        <!-- Seção do Cardápio -->
+        <main>
+            <section id="menu-section" class="mb-16">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-purple-800 mb-3">Nosso Cardápio</h2>
+                    <p class="text-purple-600 max-w-3xl mx-auto">
+                        Descubra nossas delícias feitas com ingredientes selecionados e muito carinho. 
+                        Use os filtros para explorar por categoria.
+                    </p>
+                </div>
+
+                <!-- Filtros de Categoria -->
+                <nav id="category-filters" class="flex flex-wrap justify-center gap-3 mb-10">
+                    <!-- Os botões serão gerados pelo JavaScript -->
+                </nav>
+
+                <!-- Grid de Produtos -->
+                <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Os cards serão gerados pelo JavaScript -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center mt-16 py-8 border-t border-pink-200 bg-white rounded-lg">
+            <div class="max-w-md mx-auto">
+                <div class="logo-font text-2xl text-purple-600 font-bold mb-2">Corujinha Pães & Bolos</div>
+                <p class="text-purple-500 text-sm mb-4">
+                    Confeitaria Artesanal • Doces que transformam momentos
+                </p>
+                <p class="text-purple-400 text-xs">
+                    Desenvolvido com ❤️ para adoçar seu dia
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const menuData = [
+            { name: 'Pão simples', category: 'Pães caseiros', price: 20.00 },
+            { name: 'Fatia Húngaras', category: 'Pães caseiros', price: 6.00, flavors: ['Chocolate granulado', 'coco'] },
+            { 
+                name: 'Pão recheado', 
+                category: 'Pães caseiros', 
+                price: 40.00,
+                description: 'Delicioso pão caseiro recheado',
+                flavors: ['Calabresa', 'Bauru']
+            },
+            { name: 'Bolo de Milho', category: 'Bolos simples', price: 50.00, portions: 16 },
+            { name: 'Bolo de Fubá', category: 'Bolos simples', price: 50.00, portions: 16 },
+            { name: 'Bolo Fubá c/ goiabada', category: 'Bolos simples', price: 60.00, portions: 16 },
+            { name: 'Bolo Cocada invertida', category: 'Bolos simples', price: 60.00, portions: 16 },
+            { name: 'Bolo de Chocolate', category: 'Bolos simples', price: 60.00, portions: 16 },
+             { name: 'Bolo de Cenoura com Chocolate Crocante', category: 'Bolos simples', price: 60.00, portions: 24 },
+            { name: 'Bolo Mesclado', category: 'Bolos simples', price: 60.00, portions: 16 },
+            { name: 'Bolo Formigueiro', category: 'Bolos simples', price: 55.00, portions: 16 },
+            { name: 'Bolo Laranja c/ casca', category: 'Bolos simples', price: 60.00, portions: 16 },
+            { name: 'Bolo Queijadinha', category: 'Bolos simples', price: 65.00, portions: 16 },
+            { name: 'Bolo Fubá Cremoso', category: 'Bolos simples', price: 60.00, portions: 16 },
+            { name: 'Bolo Cenoura Vulcão ', category: 'Bolos vulcão', price: 75.00 },
+            { name: 'Torta de Frango G', category: 'Tortas salgadas', price: 95.00 },
+            { name: 'Torta Baurú', category: 'Tortas salgadas', price: 110.00 },
+            { name: 'Torta de morango', category: 'Tortas doces', price: 100.00, portions: 10 },
+            { name: 'Torta de limão', category: 'Tortas doces', price: 85.00, portions: 10 },
+            { name: 'Torta Maracolate', category: 'Tortas doces', price: 110.00, portions: 10 },
+            { name: 'Torta holandesa', category: 'Tortas doces', price: 120.00, portions: 10 },
+            { name: 'Torta banoffe', category: 'Tortas doces', price: 120.00, portions: 10 },
+            { name: 'Doce de leite', category: 'Bolos recheados', price: 85.00, per_kg: true },
+            { name: 'Doce de leite c/ coco', category: 'Bolos recheados', price: 90.00, per_kg: true },
+            { name: 'Doce de leite c/ ameixa', category: 'Bolos recheados', price: 100.00, per_kg: true },
+            { name: 'Creme com abacaxi', category: 'Bolos recheados', price: 90.00, per_kg: true },
+            { name: 'Creme com pêssego', category: 'Bolos recheados', price: 90.00, per_kg: true },
+            { name: 'Mousse de maracujá', category: 'Bolos recheados', price: 100.00, per_kg: true },
+            { name: 'Mousse de chocolate', category: 'Bolos recheados', price: 105.00, per_kg: true },
+            { name: 'Ninho com morangos', category: 'Bolos recheados', price: 110.00, per_kg: true },
+            { name: 'Ninho com abacaxi', category: 'Bolos recheados', price: 105.00, per_kg: true },
+            { name: 'Merengue', category: 'Bolos recheados', price: 95.00, per_kg: true },
+            { name: 'Brigadeiro', category: 'Bolos recheados', price: 90.00, per_kg: true },
+            { name: 'Prestigio', category: 'Bolos recheados', price: 90.00, per_kg: true },
+            { name: 'Dois amores', category: 'Bolos recheados', price: 120.00, per_kg: true },
+            { name: 'Massa branca a partir', category: 'Bolos recheados', price: 85.00, per_kg: true },
+            { name: 'Massa de chocolate', category: 'Bolos recheados', price: 90.00, per_kg: true },
+            { name: 'Pudim G', category: 'Outros', price: 90.00 },
+            { name: 'Pudim M', category: 'Outros', price: 50.00 },
+            { name: 'Sonhos', category: 'Outros', price: 8.00 },
+            { name: 'Pão de mel', category: 'Outros', price: 9.00 },
+            { name: 'Esfiha Carne - M', category: 'Esfiha', price: 5.00 },
+            { name: 'Esfiha Carne c/ Muçarela - M', category: 'Esfiha', price: 6.00 },
+            { name: 'Esfiha Calabresa c/ Cheddar - M', category: 'Esfiha', price: 6.00 },
+            { 
+                name: 'Cuscuz Paulista - G', 
+                category: 'Cuscuz', 
+                price: 160.00,
+                portions: 10,
+                flavors: ['Sardinha']
+            },
+            { 
+                name: 'Cuscuz Paulista - M', 
+                category: 'Cuscuz', 
+                price: 100.00,
+                portions: 6,
+                flavors: ['Sardinha']
+            },
+        
+        ];
+
+        const categoryColors = {
+            'Pães caseiros': 'bg-amber-100 text-amber-800 border-amber-300',
+            'Bolos simples': 'bg-purple-100 text-purple-800 border-purple-300',
+            'Bolos vulcão': 'bg-pink-100 text-pink-800 border-pink-300',
+            'Tortas salgadas': 'bg-green-100 text-green-800 border-green-300',
+            'Tortas doces': 'bg-rose-100 text-rose-800 border-rose-300',
+            'Bolos recheados': 'bg-blue-100 text-blue-800 border-blue-300',
+            'Outros': 'bg-gray-100 text-gray-800 border-gray-300',
+            'Esfiha': 'bg-yellow-100 text-yellow-800 border-yellow-300',
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuGrid = document.getElementById('menu-grid');
+            const categoryFilters = document.getElementById('category-filters');
+
+            const categories = ['Todos', ...new Set(menuData.map(item => item.category))];
+
+            function renderMenu(items) {
+                menuGrid.innerHTML = '';
+                items.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'product-card bg-white rounded-2xl shadow-lg p-6 flex flex-col justify-between border';
+                    
+                    let flavorsHTML = '';
+                    if (item.flavors && item.flavors.length > 0) {
+                        flavorsHTML = `
+                            <div class="mt-3">
+                                <p class="text-sm font-medium text-gray-700 mb-2">🍴 Sabores disponíveis:</p>
+                                <div class="flex flex-wrap gap-1">
+                                    ${item.flavors.map(flavor => 
+                                        `<span class="flavor-badge font-medium">${flavor}</span>`
+                                    ).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }
+
+                    card.innerHTML = `
+                        <div>
+                            <span class="category-badge font-semibold border ${categoryColors[item.category] || 'bg-gray-100 text-gray-800'}">
+                                ${item.category}
+                            </span>
+                            <h3 class="font-bold text-xl mt-3 text-gray-800">${item.name}</h3>
+                            ${item.description ? `<p class="text-sm text-gray-600 mt-2">${item.description}</p>` : ''}
+                            ${flavorsHTML}
+                        </div>
+                        <div class="mt-4">
+                            <div class="price-tag inline-block px-4 py-2 rounded-full text-white font-bold text-lg">
+                                R$ ${item.price.toFixed(2).replace('.', ',')}
+                            </div>
+                            ${item.per_kg ? '<p class="text-sm text-gray-600 mt-2">💫 Preço por quilo</p>' : ''}
+                            ${item.portions ? `<p class="text-sm text-gray-600 mt-2">🍰 Rende ${item.portions} pedaços</p>` : ''}
+                        </div>
+                    `;
+                    menuGrid.appendChild(card);
+                });
+            }
+
+            function setupFilters() {
+                categories.forEach(category => {
+                    const button = document.createElement('button');
+                    button.textContent = category;
+                    button.className = 'nav-button px-5 py-3 rounded-full font-medium bg-white text-purple-700 border border-purple-200 hover:bg-purple-50 transition-all duration-300';
+                    
+                    if (category === 'Todos') {
+                        button.classList.add('active');
+                    }
+                    
+                    button.addEventListener('click', () => {
+                        document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        
+                        const filteredData = category === 'Todos' 
+                            ? menuData 
+                            : menuData.filter(item => item.category === category);
+                        renderMenu(filteredData);
+                    });
+                    
+                    categoryFilters.appendChild(button);
+                });
+            }
+
+            setupFilters();
+            renderMenu(menuData);
+        });
+    </script>
+</body>
+</html>
