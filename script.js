@@ -7,6 +7,10 @@
 // Exemplo: 55 11 91234-5678  =>  '5511912345678'
 const WHATSAPP_NUMBER = '5511964128261'; // <-- TROCAR pelo número real
 
+// Endereço do site do cardápio, pra mandar junto na mensagem do WhatsApp.
+// Se publicar no GitHub Pages, normalmente fica: https://<seu-usuario>.github.io/cardapio/
+const SITE_URL = 'https://filipesep.github.io/cardapio/'; // <-- confirme/troque se for diferente
+
 // Quantidade mínima e o incremento (passo) para os bolos vendidos por kg.
 const KG_MIN = 1;
 const KG_STEP = 0.5;
@@ -127,17 +131,17 @@ function orderMessageFixed(item, qty) {
   const portionsTxt = item.portions ? ` (${item.portions} pedaços)` : '';
   const total = item.price * qty;
   const qtyTxt = qty > 1 ? `${qty}x ` : '';
-  return `Olá! Vim pelo cardápio e gostaria de pedir:\n\n*${qtyTxt}${item.name}*${portionsTxt} — ${fmt(total)}`;
+  return `Olá, Eva! Vim pelo cardápio e gostaria de pedir:\n\n*${qtyTxt}${item.name}*${portionsTxt} — ${fmt(total)}\n\n${SITE_URL}`;
 }
 
 function orderMessageKg(item, kg) {
   const total = item.price * kg;
-  return `Olá! Vim pelo cardápio e gostaria de pedir:\n\n*${item.name}* — ${fmtKg(kg)}kg — ${fmt(total)}`;
+  return `Olá, Eva! Vim pelo cardápio e gostaria de pedir:\n\n*${item.name}* — ${fmtKg(kg)}kg — ${fmt(total)}\n\n${SITE_URL}`;
 }
 
 document.getElementById('heroWhatsapp').addEventListener('click', (e) => {
   e.preventDefault();
-  window.open(buildWhatsappLink('Olá! Vim pelo cardápio da Corujinha e gostaria de fazer um pedido 🦉'), '_blank');
+  window.open(buildWhatsappLink(`Olá! Vim pelo cardápio da Corujinha e gostaria de fazer um pedido 🦉\n${SITE_URL}`), '_blank');
 });
 
 /* =========================================================
