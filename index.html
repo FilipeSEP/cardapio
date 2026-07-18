@@ -53,6 +53,25 @@
   </div>
 </div>
 
+<!-- Carrinho de pedido -->
+<div class="cart-backdrop" id="cartBackdrop"></div>
+<div class="cart-panel" id="cartPanel" role="dialog" aria-modal="true" aria-label="Seu pedido">
+  <div class="cart-panel-header">
+    <h3>Seu pedido</h3>
+    <button class="cart-close" id="cartClose" aria-label="Fechar">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-panel-footer">
+    <div class="cart-total-row">
+      <span>Total</span>
+      <strong id="cartTotal">R$ 0,00</strong>
+    </div>
+    <button class="whatsapp-btn" id="cartCheckout"></button>
+    <button class="cart-clear" id="cartClear">Esvaziar pedido</button>
+  </div>
+</div>
+<button class="cart-fab" id="cartFab" aria-label="Ver meu pedido"></button>
+
 <script src="script.js"></script>
 </body>
 </html>
