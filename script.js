@@ -5,7 +5,7 @@
 // Número de WhatsApp que recebe os pedidos.
 // Formato: código do país + DDD + número, só dígitos (sem +, espaço ou traço).
 // Exemplo: 55 11 91234-5678  =>  '5511912345678'
-const WHATSAPP_NUMBER = '5511964128261'; // <-- TROCAR pelo número real
+const WHATSAPP_NUMBER = '5511964128261';
 
 // Endereço do site do cardápio, pra mandar junto na mensagem do WhatsApp.
 // Se publicar no GitHub Pages, normalmente fica: https://<seu-usuario>.github.io/cardapio/
