@@ -24,52 +24,68 @@ const KG_QUICK_OPTIONS = [1, 1.5, 2, 3];
    entram automaticamente no carrossel (lightbox) ao clicar.
    ========================================================= */
 const menuData = [
+  // ===== Pães caseiros =====
   { name: 'Pão simples', category: 'Pães caseiros', price: 20.00, photos: ['img/produtos/pao1.png'] },
   { name: 'Fatia Húngaras', category: 'Pães caseiros', price: 6.00, flavors: ['Chocolate granulado', 'Coco'], photos: ['img/produtos/fatia.jpg'] },
   { name: 'Pão recheado', category: 'Pães caseiros', price: 40.00, description: 'Delicioso pão caseiro recheado', flavors: ['Calabresa', 'Bauru'], photos: ['img/produtos/pao2.png'] },
-  { name: 'Bolo de Milho', category: 'Bolos simples', price: 50.00, portions: 16, photos: ['img/produtos/bolo-milho-1.jpg', 'img/produtos/bolo-milho-2.jpg'] },
-  { name: 'Bolo de Fubá', category: 'Bolos simples', price: 50.00, portions: 16, photos: ['img/produtos/bolo-fuba-1.jpg', 'img/produtos/bolo-fuba-2.jpg'] },
-  { name: 'Bolo Fubá c/ goiabada', category: 'Bolos simples', price: 60.00, portions: 16, photos: ['img/produtos/bolo-fuba-goiabada-1.jpg', 'img/produtos/bolo-fuba-goiabada-2.jpg'] },
-  { name: 'Bolo Cocada invertida', category: 'Bolos simples', price: 60.00, portions: 16, photos: ['img/produtos/bolo-cocada-invertida-1.jpg', 'img/produtos/bolo-cocada-invertida-2.jpg'] },
-  { name: 'Bolo de Chocolate', category: 'Bolos simples', price: 60.00, portions: 16, photos: ['img/produtos/bolo-chocolate-1.jpg', 'img/produtos/bolo-chocolate-2.jpg'] },
-  { name: 'Bolo de Cenoura com Chocolate Crocante', category: 'Bolos simples', price: 60.00, portions: 24, photos: ['img/produtos/bolo-cenoura-chocolate-1.jpg', 'img/produtos/bolo-cenoura-chocolate-2.jpg'] },
-  { name: 'Bolo Mesclado', category: 'Bolos simples', price: 60.00, portions: 16, photos: ['img/produtos/bolo-mesclado-1.jpg', 'img/produtos/bolo-mesclado-2.jpg'] },
-  { name: 'Bolo Formigueiro', category: 'Bolos simples', price: 55.00, portions: 16, photos: ['img/produtos/bolo-formigueiro-1.jpg', 'img/produtos/bolo-formigueiro-2.jpg'] },
-  { name: 'Bolo Laranja c/ casca', category: 'Bolos simples', price: 60.00, portions: 16, photos: ['img/produtos/bololaranja.png'] },
-  { name: 'Bolo Queijadinha', category: 'Bolos simples', price: 65.00, portions: 16, photos: ['img/produtos/bolo-queijadinha-1.jpg', 'img/produtos/bolo-queijadinha-2.jpg'] },
-  { name: 'Bolo Fubá Cremoso', category: 'Bolos simples', price: 60.00, portions: 16 },
-  { name: 'Bolo Cenoura Vulcão', category: 'Bolos vulcão', price: 75.00 },
-  { name: 'Torta de Frango G', category: 'Tortas salgadas', price: 95.00 },
-  { name: 'Torta Bauru', category: 'Tortas salgadas', price: 110.00 },
-  { name: 'Torta de morango', category: 'Tortas doces', price: 100.00, portions: 10 },
+
+  // ===== Bolos simples =====
+  { name: 'Bolo de Milho', category: 'Bolos simples', price: 50.00, portions: 16, photos: [] },
+  { name: 'Bolo de Fubá', category: 'Bolos simples', price: 50.00, portions: 16, photos: [] },
+  { name: 'Bolo Fubá c/ goiabada', category: 'Bolos simples', price: 60.00, portions: 16, photos: [] },
+  { name: 'Bolo Cocada invertida', category: 'Bolos simples', price: 60.00, portions: 16, photos: [] },
+  { name: 'Bolo de Cenoura com Chocolate Crocante', category: 'Bolos simples', price: 60.00, portions: 24, photos: [] },
+  { name: 'Bolo Formigueiro', category: 'Bolos simples', price: 55.00, portions: 16, photos: [] },
+  { name: 'Bolo Laranja c/ casca', category: 'Bolos simples', price: 60.00, portions: 16, photos: [] },
+  { name: 'Bolo Queijadinha', category: 'Bolos simples', price: 65.00, portions: 16, photos: [] },
+  { name: 'Bolo Fubá Cremoso', category: 'Bolos simples', price: 60.00, portions: 16, photos: [] },
+
+  // ===== Bolos vulcão =====
+  { name: 'Bolo Cenoura Vulcão', category: 'Bolo Cenoura', price: 75.00,  },
+  { name: 'Bolo Cenoura Crocante', category: 'Bolo Cenoura', price: 75.00,  },
+
+  // ===== Tortas salgadas =====
+  { name: 'Torta de Frango G', category: 'Tortas salgadas', price: 95.00, photos: [] },
+  { name: 'Torta Bauru', category: 'Tortas salgadas', price: 110.00, photos: [] },
+
+  // ===== Tortas doces =====
+  { name: 'Torta de morango', category: 'Tortas doces', price: 100.00, portions: 10, photos: [] },
   { name: 'Torta de limão', category: 'Tortas doces', price: 85.00, portions: 10, photos: ['img/produtos/tortalimao.png'] },
-  { name: 'Torta Maracolate', category: 'Tortas doces', price: 110.00, portions: 10 },
-  { name: 'Torta holandesa', category: 'Tortas doces', price: 120.00, portions: 10 },
-  { name: 'Torta banoffe', category: 'Tortas doces', price: 120.00, portions: 10 },
+  { name: 'Torta Maracolate', category: 'Tortas doces', price: 110.00, portions: 10, photos: [] },
+  { name: 'Torta holandesa', category: 'Tortas doces', price: 120.00, portions: 10, photos: [] },
+  { name: 'Torta banoffe', category: 'Tortas doces', price: 120.00, portions: 10, photos: [] },
+
+  // ===== Bolos recheados (per_kg) =====
   { name: 'Doce de leite', category: 'Bolos recheados', price: 85.00, per_kg: true, photos: ['img/produtos/bolo1.png','img/produtos/bolo2.png','img/produtos/bolo3.png','img/produtos/bolo4.png','img/produtos/bolo5.png','img/produtos/bolo6.png','img/produtos/bolo7.png','img/produtos/bolo8.png','img/produtos/bolo9.png'] },
-  { name: 'Doce de leite c/ coco', category: 'Bolos recheados', price: 90.00, per_kg: true },
-  { name: 'Doce de leite c/ ameixa', category: 'Bolos recheados', price: 100.00, per_kg: true },
-  { name: 'Creme com abacaxi', category: 'Bolos recheados', price: 90.00, per_kg: true },
-  { name: 'Creme com pêssego', category: 'Bolos recheados', price: 90.00, per_kg: true },
-  { name: 'Mousse de maracujá', category: 'Bolos recheados', price: 100.00, per_kg: true },
-  { name: 'Mousse de chocolate', category: 'Bolos recheados', price: 105.00, per_kg: true },
-  { name: 'Ninho com morangos', category: 'Bolos recheados', price: 110.00, per_kg: true },
-  { name: 'Ninho com abacaxi', category: 'Bolos recheados', price: 105.00, per_kg: true },
-  { name: 'Merengue', category: 'Bolos recheados', price: 95.00, per_kg: true },
-  { name: 'Brigadeiro', category: 'Bolos recheados', price: 90.00, per_kg: true },
-  { name: 'Prestígio', category: 'Bolos recheados', price: 90.00, per_kg: true },
+  { name: 'Doce de leite c/ coco', category: 'Bolos recheados', price: 90.00, per_kg: true, photos: [] },
+  { name: 'Doce de leite c/ ameixa', category: 'Bolos recheados', price: 100.00, per_kg: true, photos: [] },
+  { name: 'Creme com abacaxi', category: 'Bolos recheados', price: 90.00, per_kg: true, photos: [] },
+  { name: 'Creme com pêssego', category: 'Bolos recheados', price: 90.00, per_kg: true, photos: [] },
+  { name: 'Mousse de maracujá', category: 'Bolos recheados', price: 100.00, per_kg: true, photos: [] },
+  { name: 'Mousse de chocolate', category: 'Bolos recheados', price: 105.00, per_kg: true, photos: [] },
+  { name: 'Ninho com morangos', category: 'Bolos recheados', price: 110.00, per_kg: true, photos: [] },
+  { name: 'Ninho com abacaxi', category: 'Bolos recheados', price: 105.00, per_kg: true, photos: [] },
+  { name: 'Merengue', category: 'Bolos recheados', price: 95.00, per_kg: true, photos: [] },
+  { name: 'Brigadeiro', category: 'Bolos recheados', price: 90.00, per_kg: true, photos: [] },
+  { name: 'Prestígio', category: 'Bolos recheados', price: 90.00, per_kg: true, photos: [] },
   { name: 'Dois amores', category: 'Bolos recheados', price: 120.00, per_kg: true, photos: [] },
-  { name: 'Massa branca a partir', category: 'Bolos recheados', price: 85.00, per_kg: true },
-  { name: 'Massa de chocolate', category: 'Bolos recheados', price: 90.00, per_kg: true },
-  { name: 'Pudim G', category: 'Outros', price: 90.00 },
-  { name: 'Pudim M', category: 'Outros', price: 50.00 },
+  { name: 'Massa branca a partir', category: 'Bolos recheados', price: 85.00, per_kg: true, photos: [] },
+  { name: 'Massa de chocolate', category: 'Bolos recheados', price: 90.00, per_kg: true, photos: [] },
+
+  // ===== Outros =====
+  { name: 'Pudim G', category: 'Outros', price: 90.00, photos: [] },
+  { name: 'Pudim M', category: 'Outros', price: 50.00, photos: [] },
   { name: 'Sonhos', category: 'Outros', price: 8.00, photos: ['img/produtos/sonhos.jpg'] },
-  { name: 'Pão de mel', category: 'Outros', price: 9.00 },
-  { name: 'Esfiha Carne - M', category: 'Esfiha', price: 5.00 },
-  { name: 'Esfiha Carne c/ Muçarela - M', category: 'Esfiha', price: 6.00 },
-  { name: 'Esfiha Calabresa c/ Cheddar - M', category: 'Esfiha', price: 6.00 },
-  { name: 'Cuscuz Paulista - G', category: 'Cuscuz', price: 160.00, portions: 10, flavors: ['Sardinha'] },
-  { name: 'Cuscuz Paulista - M', category: 'Cuscuz', price: 100.00, portions: 6, flavors: ['Sardinha'] },
+  { name: 'Pão de mel', category: 'Outros', price: 9.00, photos: [] },
+
+  // ===== Esfiha =====
+  { name: 'Esfiha Carne - M', category: 'Esfiha', price: 5.00, photos: [] },
+  { name: 'Esfiha Carne c/ Muçarela - M', category: 'Esfiha', price: 6.00, photos: [] },
+  { name: 'Esfiha Calabresa c/ Cheddar - M', category: 'Esfiha', price: 6.00, photos: [] },
+
+  // ===== Cuscuz =====
+  { name: 'Cuscuz Paulista - G', category: 'Cuscuz', price: 160.00, portions: 10, flavors: ['Sardinha'], photos: [] },
+  { name: 'Cuscuz Paulista - M', category: 'Cuscuz', price: 100.00, portions: 6, flavors: ['Sardinha'], photos: [] },
 ];
 
 // id estável para cada item (usado pra achar o input de kg / quantidade / fotos de cada card)
@@ -329,7 +345,7 @@ function getKgState(id) {
 }
 
 function setKgState(id, kg, opts = {}) {
-  const snapToStep = opts.snapToStep !== false; // chips continuam "arredondando" pro passo (0,5 em 0,5)
+  const snapToStep = opts.snapToStep !== false;
   kg = snapToStep
     ? Math.max(KG_MIN, Math.round(kg / KG_STEP) * KG_STEP)
     : Math.max(KG_MIN, kg);
@@ -337,15 +353,6 @@ function setKgState(id, kg, opts = {}) {
   const total = gridEl.querySelector(`[data-kg-total="${id}"]`);
   const item = menuData.find(i => i.id === id);
   if (input) input.value = kg;
-  if (total) total.innerHTML = `<span>R$</span>${(item.price * kg).toFixed(2).replace('.', ',')}`;
-  gridEl.querySelectorAll(`[data-kg-calc="${id}"] .kg-chip`).forEach(chip => {
-    chip.classList.toggle('active', parseFloat(chip.dataset.kgChip) === kg);
-  });
-}
-
-function updateKgTotal(id, kg) {
-  const total = gridEl.querySelector(`[data-kg-total="${id}"]`);
-  const item = menuData.find(i => i.id === id);
   if (total) total.innerHTML = `<span>R$</span>${(item.price * kg).toFixed(2).replace('.', ',')}`;
   gridEl.querySelectorAll(`[data-kg-calc="${id}"] .kg-chip`).forEach(chip => {
     chip.classList.toggle('active', parseFloat(chip.dataset.kgChip) === kg);
@@ -424,8 +431,10 @@ gridEl.addEventListener('input', (e) => {
     const id = parseInt(kgInput.dataset.kgInput, 10);
     const raw = parseFloat(kgInput.value);
     const val = isNaN(raw) ? KG_MIN : Math.max(KG_MIN, raw);
-    // não reescreve o input aqui: deixa a pessoa terminar de digitar (ex: "1,843" ou "1.8")
-    updateKgTotal(id, val);
+    // atualiza o total em tempo real, mas sem arredondar ainda
+    const item = menuData.find(i => i.id === id);
+    const total = gridEl.querySelector(`[data-kg-total="${id}"]`);
+    if (total) total.innerHTML = `<span>R$</span>${(item.price * val).toFixed(2).replace('.', ',')}`;
     return;
   }
 
@@ -437,15 +446,18 @@ gridEl.addEventListener('input', (e) => {
   }
 });
 
-// Ao sair do campo de peso, corrige valores inválidos (vazio, negativo, abaixo do mínimo)
+// Ao sair do campo de peso, corrige para o passo (KG_STEP) e sincroniza os chips
 gridEl.addEventListener('blur', (e) => {
   const kgInput = e.target.closest('[data-kg-input]');
   if (!kgInput) return;
   const id = parseInt(kgInput.dataset.kgInput, 10);
   const raw = parseFloat(kgInput.value);
   const val = isNaN(raw) || raw < KG_MIN ? KG_MIN : raw;
-  kgInput.value = val;
-  updateKgTotal(id, val);
+  // Arredonda para o passo definido
+  const stepped = Math.round(val / KG_STEP) * KG_STEP;
+  const finalKg = Math.max(KG_MIN, stepped);
+  // Usa setKgState para atualizar tudo (input, total e chips)
+  setKgState(id, finalKg);
 }, true);
 
 /* =========================================================
