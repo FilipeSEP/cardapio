@@ -19,15 +19,15 @@ const KG_QUICK_OPTIONS = [1, 1.5, 2, 3];
 /* =========================================================
    DADOS DO CARDÁPIO
    Para adicionar fotos a um item, inclua um campo "photos":
-   photos: ['img/produtos/bolo-cenoura-1.jpg', 'img/produtos/bolo-cenoura-2.jpg']
+   photos: ['img/bolo-cenoura-1.jpg', 'img/bolo-cenoura-2.jpg']
    O ícone de câmera só aparece nos itens que tiverem fotos, e elas
    entram automaticamente no carrossel (lightbox) ao clicar.
    ========================================================= */
 const menuData = [
   // ===== Pães caseiros =====
-  { name: 'Pão simples', category: 'Pães caseiros', price: 20.00, photos: ['img/produtos/pao1.png'] },
-  { name: 'Fatia Húngaras', category: 'Pães caseiros', price: 6.00, flavors: ['Chocolate granulado', 'Coco'], photos: ['img/produtos/fatia.jpg'] },
-  { name: 'Pão recheado', category: 'Pães caseiros', price: 40.00, description: 'Delicioso pão caseiro recheado', flavors: ['Calabresa', 'Bauru'], photos: ['img/produtos/pao2.png'] },
+  { name: 'Pão simples', category: 'Pães caseiros', price: 20.00, photos: ['img/pao1.png'] },
+  { name: 'Fatia Húngaras', category: 'Pães caseiros', price: 6.00, flavors: ['Chocolate granulado', 'Coco'], photos: ['img/fatia.png'] },
+  { name: 'Pão recheado', category: 'Pães caseiros', price: 40.00, description: 'Delicioso pão caseiro recheado', flavors: ['Calabresa', 'Bauru'], photos: [] }, // <-- volte a preencher quando enviar a foto (ex: 'img/pao2.png')
 
   // ===== Bolos simples =====
   { name: 'Bolo de Milho', category: 'Bolos simples', price: 50.00, portions: 16, photos: [] },
@@ -36,7 +36,7 @@ const menuData = [
   { name: 'Bolo Cocada invertida', category: 'Bolos simples', price: 60.00, portions: 16, photos: [] },
   { name: 'Bolo de Cenoura com Chocolate Crocante', category: 'Bolos simples', price: 60.00, portions: 24, photos: [] },
   { name: 'Bolo Formigueiro', category: 'Bolos simples', price: 55.00, portions: 16, photos: [] },
-  { name: 'Bolo Laranja c/ casca', category: 'Bolos simples', price: 60.00, portions: 16, photos: [] },
+  { name: 'Bolo Laranja c/ casca', category: 'Bolos simples', price: 60.00, portions: 16, photos: ['img/bololaranja.png'] },
   { name: 'Bolo Queijadinha', category: 'Bolos simples', price: 65.00, portions: 16, photos: [] },
   { name: 'Bolo Fubá Cremoso', category: 'Bolos simples', price: 60.00, portions: 16, photos: [] },
 
@@ -50,13 +50,13 @@ const menuData = [
 
   // ===== Tortas doces =====
   { name: 'Torta de morango', category: 'Tortas doces', price: 100.00, portions: 10, photos: [] },
-  { name: 'Torta de limão', category: 'Tortas doces', price: 85.00, portions: 10, photos: ['img/produtos/tortalimao.png'] },
+  { name: 'Torta de limão', category: 'Tortas doces', price: 85.00, portions: 10, photos: ['img/tortalimao.png'] },
   { name: 'Torta Maracolate', category: 'Tortas doces', price: 110.00, portions: 10, photos: [] },
   { name: 'Torta holandesa', category: 'Tortas doces', price: 120.00, portions: 10, photos: [] },
   { name: 'Torta banoffe', category: 'Tortas doces', price: 120.00, portions: 10, photos: [] },
 
   // ===== Bolos recheados (per_kg) =====
-  { name: 'Doce de leite', category: 'Bolos recheados', price: 85.00, per_kg: true, photos: ['img/produtos/bolo1.png','img/produtos/bolo2.png','img/produtos/bolo3.png','img/produtos/bolo4.png','img/produtos/bolo5.png','img/produtos/bolo6.png','img/produtos/bolo7.png','img/produtos/bolo8.png','img/produtos/bolo9.png'] },
+  { name: 'Doce de leite', category: 'Bolos recheados', price: 85.00, per_kg: true, photos: ['img/bolo1.png','img/bolo2.png','img/bolo3.png','img/bolo4.png','img/bolo5.png','img/bolo6.png','img/bolo7.png','img/bolo8.png','img/bolo9.png'] },
   { name: 'Doce de leite c/ coco', category: 'Bolos recheados', price: 90.00, per_kg: true, photos: [] },
   { name: 'Doce de leite c/ ameixa', category: 'Bolos recheados', price: 100.00, per_kg: true, photos: [] },
   { name: 'Creme com abacaxi', category: 'Bolos recheados', price: 90.00, per_kg: true, photos: [] },
@@ -75,7 +75,7 @@ const menuData = [
   // ===== Outros =====
   { name: 'Pudim G', category: 'Outros', price: 90.00, photos: [] },
   { name: 'Pudim M', category: 'Outros', price: 50.00, photos: [] },
-  { name: 'Sonhos', category: 'Outros', price: 8.00, photos: ['img/produtos/sonhos.jpg'] },
+  { name: 'Sonhos', category: 'Outros', price: 8.00, photos: ['img/sonhos.png'] },
   { name: 'Pão de mel', category: 'Outros', price: 9.00, photos: [] },
 
   // ===== Esfiha =====
