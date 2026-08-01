@@ -26,7 +26,7 @@ const KG_QUICK_OPTIONS = [1, 1.5, 2, 3];
 const menuData = [
   // ===== Pães caseiros =====
   { name: 'Pão simples', category: 'Pães caseiros', price: 20.00, photos: ['img/pao1.png'] },
-  { name: 'Fatia Húngaras', category: 'Pães caseiros', price: 6.00, flavors: ['Chocolate granulado', 'Coco'], photos: ['img/fatia.png'] },
+  { name: 'Fatia Húngara', category: 'Pães caseiros', price: 6.00, flavors: ['Chocolate granulado', 'Coco'], photos: ['img/fatia.png'] },
   { name: 'Pão recheado', category: 'Pães caseiros', price: 40.00, description: 'Delicioso pão caseiro recheado', flavors: ['Calabresa', 'Bauru'], photos: [] }, // <-- volte a preencher quando enviar a foto (ex: 'img/pao2.png')
 
   // ===== Bolos simples =====
@@ -34,7 +34,6 @@ const menuData = [
   { name: 'Bolo de Fubá', category: 'Bolos simples', price: 50.00, portions: 16, photos: [] },
   { name: 'Bolo Fubá c/ goiabada', category: 'Bolos simples', price: 60.00, portions: 16, photos: [] },
   { name: 'Bolo Cocada invertida', category: 'Bolos simples', price: 60.00, portions: 16, photos: [] },
-  { name: 'Bolo de Cenoura com Chocolate Crocante', category: 'Bolos simples', price: 60.00, portions: 24, photos: [] },
   { name: 'Bolo Formigueiro', category: 'Bolos simples', price: 55.00, portions: 16, photos: [] },
   { name: 'Bolo Laranja c/ casca', category: 'Bolos simples', price: 60.00, portions: 16, photos: ['img/bololaranja.png'] },
   { name: 'Bolo Queijadinha', category: 'Bolos simples', price: 65.00, portions: 16, photos: [] },
@@ -42,7 +41,7 @@ const menuData = [
 
   // ===== Bolos vulcão =====
   { name: 'Bolo Cenoura Vulcão', category: 'Bolo Cenoura', price: 75.00,  },
-  { name: 'Bolo Cenoura Crocante', category: 'Bolo Cenoura', price: 75.00,  },
+  { name: 'Bolo Cenoura Crocante', category: 'Bolo Cenoura', price: 65.00,  },
 
   // ===== Tortas salgadas =====
   { name: 'Torta de Frango G', category: 'Tortas salgadas', price: 95.00, photos: [] },
