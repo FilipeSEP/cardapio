@@ -31,10 +31,11 @@ const menuData = [
 
   // ===== Bolos simples =====
   { name: 'Bolo de Milho', category: 'Bolos simples', price: 50.00, portions: 16, photos: [] },
+  { name: 'Bolo de Mandioca', category: 'Bolos simples', price: 60.00, portions: 16, photos: [] },
+  { name: 'Bolo de Leite c/ Canela', category: 'Bolos simples', price: 50.00, portions: 16, photos: [] },
   { name: 'Bolo de Fubá', category: 'Bolos simples', price: 50.00, portions: 16, photos: [] },
   { name: 'Bolo Fubá c/ goiabada', category: 'Bolos simples', price: 60.00, portions: 16, photos: [] },
   { name: 'Bolo Cocada invertida', category: 'Bolos simples', price: 60.00, portions: 16, photos: [] },
-  { name: 'Bolo de Cenoura com Chocolate Crocante', category: 'Bolos simples', price: 60.00, portions: 24, photos: [] },
   { name: 'Bolo Formigueiro', category: 'Bolos simples', price: 55.00, portions: 16, photos: [] },
   { name: 'Bolo Laranja c/ casca', category: 'Bolos simples', price: 60.00, portions: 16, photos: ['img/bololaranja.png'] },
   { name: 'Bolo Queijadinha', category: 'Bolos simples', price: 65.00, portions: 16, photos: [] },
@@ -42,7 +43,7 @@ const menuData = [
 
   // ===== Bolos vulcão =====
   { name: 'Bolo Cenoura Vulcão', category: 'Bolo Cenoura', price: 75.00,  },
-  { name: 'Bolo Cenoura Crocante', category: 'Bolo Cenoura', price: 75.00,  },
+  { name: 'Bolo Cenoura Crocante', category: 'Bolo Cenoura', price: 65.00,  },
 
   // ===== Tortas salgadas =====
   { name: 'Torta de Frango G', category: 'Tortas salgadas', price: 95.00, photos: [] },
@@ -69,14 +70,12 @@ const menuData = [
   { name: 'Brigadeiro', category: 'Bolos recheados', price: 90.00, per_kg: true, photos: [] },
   { name: 'Prestígio', category: 'Bolos recheados', price: 90.00, per_kg: true, photos: [] },
   { name: 'Dois amores', category: 'Bolos recheados', price: 120.00, per_kg: true, photos: [] },
-  { name: 'Massa branca a partir', category: 'Bolos recheados', price: 85.00, per_kg: true, photos: [] },
-  { name: 'Massa de chocolate', category: 'Bolos recheados', price: 90.00, per_kg: true, photos: [] },
 
   // ===== Outros =====
   { name: 'Pudim G', category: 'Outros', price: 90.00, photos: [] },
   { name: 'Pudim M', category: 'Outros', price: 50.00, photos: [] },
   { name: 'Sonhos', category: 'Outros', price: 8.00, photos: ['img/sonhos.png'] },
-  { name: 'Pão de mel', category: 'Outros', price: 9.00, photos: [] },
+  { name: 'Pão de mel', category: 'Outros', price: 9.00, flavors: ['Doce leite' 'Prestígio'], photos: [] },
 
   // ===== Esfiha =====
   { name: 'Esfiha Carne - M', category: 'Esfiha', price: 5.00, photos: [] },
