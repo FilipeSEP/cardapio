@@ -42,7 +42,7 @@ const menuData = [
   { name: 'Bolo Fubá Cremoso', category: 'Bolos simples', price: 60.00, portions: 16, photos: [] },
 
   // ===== Bolos vulcão =====
-  { name: 'Bolo Cenoura Vulcão', category: 'Bolos de Ceboura', price: 75.00 },
+  { name: 'Bolo Cenoura Vulcão', category: 'Bolos de Cenoura', price: 75.00 },
    { name: 'Bolo de Cenoura com Chocolate Crocante', category: 'Bolos de Cenoura', price: 65.00, portions: 24, photos: [] },
 
   // ===== Tortas salgadas =====
